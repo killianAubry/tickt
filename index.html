@@ -368,6 +368,7 @@
       display: flex;
       gap: 12px;
       margin-top: 0;
+      flex-direction: column;
     }
 
     .signup-form input {
@@ -427,6 +428,8 @@
       text-decoration: none;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(30, 58, 95, 0.2);
+      cursor: pointer;
+      border: none;
     }
 
     .demo-btn:hover {
@@ -434,7 +437,417 @@
       box-shadow: 0 8px 25px rgba(30, 58, 95, 0.3);
     }
 
- 
+    /* Demo Modal Styles */
+    .demo-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .demo-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .demo-modal {
+      background: white;
+      border-radius: 24px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.4s ease;
+    }
+
+    .demo-modal-overlay.active .demo-modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .demo-header {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      color: white;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .demo-header h2 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 24px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .demo-close {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .demo-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .demo-content {
+      padding: 0;
+      position: relative;
+    }
+
+    .fake-article {
+      padding: 32px;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    .fake-article-header {
+      margin-bottom: 24px;
+    }
+
+    .fake-article-header h1 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 28px;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .fake-meta {
+      color: var(--text-secondary);
+      font-size: 14px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .fake-article-content {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    .fake-article-content p {
+      margin-bottom: 16px;
+    }
+
+    .blur-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, white 80%);
+      pointer-events: none;
+    }
+
+    .paywall-barrier {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 32px;
+      text-align: center;
+      border-top: 1px solid rgba(59, 130, 246, 0.1);
+      transform: translateY(100%);
+      transition: transform 0.5s ease;
+    }
+
+    .paywall-barrier.visible {
+      transform: translateY(0);
+    }
+
+    .paywall-content {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .paywall-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 28px;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .paywall-barrier h3 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 22px;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .paywall-barrier p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .paywall-options {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-secondary {
+      padding: 14px 28px;
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Ad Simulation */
+    .ad-simulation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      z-index: 2000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .ad-simulation.active {
+      display: flex;
+    }
+
+    .ad-container {
+      text-align: center;
+      max-width: 500px;
+      padding: 40px;
+    }
+
+    .ad-placeholder {
+      width: 400px;
+      height: 225px;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ad-placeholder::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .ad-placeholder i {
+      font-size: 48px;
+      color: rgba(255, 255, 255, 0.3);
+      z-index: 1;
+    }
+
+    .ad-timer {
+      font-size: 48px;
+      font-weight: 700;
+      font-family: 'Clash Display', sans-serif;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent) 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ad-text {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 8px;
+    }
+
+    .ad-subtext {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .skip-btn {
+      margin-top: 32px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 8px;
+      cursor: not-allowed;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    .skip-btn.active {
+      opacity: 1;
+      cursor: pointer;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .skip-btn.active:hover {
+      background: var(--accent-dim);
+    }
+
+    /* Success State */
+    .unlock-success {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      z-index: 2000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .unlock-success.active {
+      display: flex;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 24px;
+      animation: scaleIn 0.5s ease;
+      box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+    }
+
+    @keyframes scaleIn {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .unlock-success h2 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .unlock-success p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 32px;
+    }
+
+    .token-display {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      font-family: monospace;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 400px;
+      word-break: break-all;
+    }
+
+    .continue-btn {
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .continue-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+    }
 
     /* Scroll Hint */
     .scroll-hint {
@@ -519,6 +932,33 @@
       .info-card h3 {
         font-size: 22px;
       }
+
+      .demo-modal {
+        width: 95%;
+        max-height: 95vh;
+      }
+
+      .fake-article {
+        padding: 20px;
+      }
+
+      .fake-article-header h1 {
+        font-size: 22px;
+      }
+
+      .ad-placeholder {
+        width: 300px;
+        height: 169px;
+      }
+
+      .paywall-options {
+        flex-direction: column;
+      }
+
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     @media (max-width: 480px) {
@@ -530,6 +970,14 @@
         width: 38px;
         height: 38px;
         font-size: 16px;
+      }
+
+      .demo-header {
+        padding: 20px 24px;
+      }
+
+      .demo-header h2 {
+        font-size: 20px;
       }
     }
   </style>
@@ -543,8 +991,6 @@
   </div>
   <div class="grid-overlay"></div>
   <div class="noise"></div>
-
-
 
   <!-- Progress -->
   <div class="progress-track">
@@ -621,9 +1067,9 @@
         <p>Watch tickt in action on our demo publication. Hit the paywall, click "Watch Ad to Unlock," and see your access granted in under 20 seconds — no account, no credit card, no friction.</p>
       </div>
       <div class="card-footer">
-        <a href="#demo" class="demo-btn">
+        <button class="demo-btn" onclick="openDemo()">
           Open Demo <i class="fa-solid fa-arrow-right"></i>
-        </a>
+        </button>
       </div>
     </div>
 
@@ -637,12 +1083,94 @@
       </div>
       <div class="card-body" style="text-align: center; padding-top: 0;">
         <p style="margin-bottom: 24px;">tickt is in private beta. Join others on the waitlist and be the first to profit from non-subscribers — no code required to get started, 14-day free trial when we launch.</p>
-        <form class="signup-form" onsubmit="event.preventDefault(); alert('You\'re on the list! We\'ll be in touch before launch.');">
-          <input type="email" placeholder="Enter your email" required>
-          <button type="submit">Join Waitlist</button>
+        <form class="signup-form">
+          <button type="submit" formaction="mailto:sales.tickt@gmail.com">Join Waitlist</button>
         </form>
       </div>
     </div>
+  </div>
+
+  <!-- Demo Modal -->
+  <div class="demo-modal-overlay" id="demoModal">
+    <div class="demo-modal">
+      <div class="demo-header">
+        <h2><i class="fa-solid fa-newspaper"></i> The Daily Tech</h2>
+        <button class="demo-close" onclick="closeDemo()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="demo-content">
+        <div class="fake-article" id="fakeArticle">
+          <div class="fake-article-header">
+            <h1>The Future of AI: How Machine Learning is Reshaping Industries in 2024</h1>
+            <div class="fake-meta">
+              <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+              <span><i class="fa-regular fa-user"></i> Sarah Chen</span>
+              <span><i class="fa-regular fa-calendar"></i> Dec 15, 2024</span>
+            </div>
+          </div>
+          <div class="fake-article-content" id="articleContent">
+            <p>Artificial intelligence has moved beyond the realm of science fiction and into the boardrooms of Fortune 500 companies. In 2024, we're witnessing an unprecedented acceleration in AI adoption across industries that were previously resistant to digital transformation.</p>
+            <p>The manufacturing sector, long considered immune to software disruption, is now leading the charge. Smart factories powered by predictive maintenance algorithms have reduced downtime by an average of 45%, translating to billions in saved revenue. Companies like Siemens and GE are no longer just experimenting with AI—they're restructuring their entire operations around it.</p>
+            <p>But it's not just about efficiency. The creative industries are experiencing their own AI revolution. Graphic designers, writers, and musicians are discovering that AI tools don't replace their creativity—they amplify it. The most successful professionals in 2024 are those who have learned to collaborate with algorithms, not compete against them.</p>
+            <p>Healthcare presents perhaps the most compelling case study. Diagnostic AI systems have achieved accuracy rates that rival specialist physicians in certain domains. Radiology departments worldwide are implementing AI screening tools that can detect early-stage cancers with remarkable precision.</p>
+            <p>However, this rapid advancement brings significant challenges. The ethical implications of AI decision-making in critical areas like criminal justice and hiring remain hotly debated. Bias in training data continues to plague even the most sophisticated systems.</p>
+            <p>Regulatory frameworks are struggling to keep pace. The EU's AI Act represents a bold attempt to categorize and control AI applications based on risk levels, but critics argue it may stifle innovation. Meanwhile, the US approach remains fragmented, with different states implementing varying standards.</p>
+            <p>Looking ahead, the convergence of AI with other emerging technologies—quantum computing, blockchain, and the Internet of Things—promises to create entirely new paradigms. The companies that will dominate the next decade are those investing in these intersections today.</p>
+            <p>What does this mean for the average professional? Continuous learning is no longer optional. The half-life of technical skills is shrinking rapidly, and adaptability has become the most valuable trait in the modern workforce.</p>
+            <p>Investors are taking notice. AI-focused venture capital reached record highs in 2024, with particular interest in vertical-specific solutions. General-purpose AI platforms are giving way to specialized tools designed for particular industries and use cases.</p>
+            <p>The environmental impact of AI cannot be ignored. Training large models consumes enormous amounts of energy, prompting a growing movement toward green AI. Researchers are developing more efficient architectures and exploring ways to reduce the carbon footprint of machine learning.</p>
+            <p>As we stand at this technological inflection point, one thing is clear: AI is not just changing how we work—it's changing what it means to be human. The question is no longer whether AI will transform your industry, but how quickly you can adapt to that transformation.</p>
+          </div>
+          <div class="blur-overlay"></div>
+        </div>
+        <div class="paywall-barrier" id="paywallBarrier">
+          <div class="paywall-content">
+            <div class="paywall-icon">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <h3>This article is premium content</h3>
+            <p>Subscribe to continue reading, or watch a 15-second ad to unlock this article for 24 hours.</p>
+            <div class="paywall-options">
+              <button class="btn-primary" onclick="startAd()">
+                <i class="fa-solid fa-play"></i> Watch Ad to Unlock
+              </button>
+              <button class="btn-secondary">
+                <i class="fa-solid fa-crown"></i> Subscribe Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ad Simulation Screen -->
+  <div class="ad-simulation" id="adSimulation">
+    <div class="ad-container">
+      <div class="ad-placeholder">
+        <i class="fa-brands fa-google"></i>
+      </div>
+      <div class="ad-timer" id="adTimer">15</div>
+      <div class="ad-text">Watching advertisement...</div>
+      <div class="ad-subtext">Your content will unlock automatically</div>
+      <button class="skip-btn" id="skipBtn" onclick="completeAd()">
+        Skip Ad <i class="fa-solid fa-forward"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Unlock Success Screen -->
+  <div class="unlock-success" id="unlockSuccess">
+    <div class="success-icon">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <h2>Content Unlocked!</h2>
+    <p>You now have 24-hour access to this article</p>
+    <div class="token-display" id="tokenDisplay">
+      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250ZW50SWQiOiJhcnRpY2xlXzEyMyIsImV4cCI6MTcwMjY1MjgwMCwiaWF0IjoxNzAyNTY2NDAwfQ
+    </div>
+    <button class="continue-btn" onclick="continueReading()">
+      Continue Reading <i class="fa-solid fa-arrow-right"></i>
+    </button>
   </div>
 
   <!-- Scroll Hint -->
@@ -666,6 +1194,20 @@
       document.getElementById('card3'),
       document.getElementById('card4')
     ];
+
+    // Demo elements
+    const demoModal = document.getElementById('demoModal');
+    const paywallBarrier = document.getElementById('paywallBarrier');
+    const adSimulation = document.getElementById('adSimulation');
+    const unlockSuccess = document.getElementById('unlockSuccess');
+    const fakeArticle = document.getElementById('fakeArticle');
+    const articleContent = document.getElementById('articleContent');
+    const adTimer = document.getElementById('adTimer');
+    const skipBtn = document.getElementById('skipBtn');
+    const tokenDisplay = document.getElementById('tokenDisplay');
+
+    let adInterval;
+    let adTimeLeft = 15;
 
     // Continuous scroll state
     let targetProgress = 0;
@@ -782,7 +1324,6 @@
       };
     }
 
-
     function updateVisibility(progress) {
       // Cards appear/disappear based on continuous progress
       // Card 1: visible when progress is in range [0.8, 2.2]
@@ -848,9 +1389,85 @@
       // Update visibility of cards
       updateVisibility(currentProgress);
       
-      
-      
       requestAnimationFrame(animate);
+    }
+
+    // Demo Modal Functions
+    function openDemo() {
+      demoModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Show paywall after a short delay
+      setTimeout(() => {
+        paywallBarrier.classList.add('visible');
+      }, 1000);
+    }
+
+    function closeDemo() {
+      demoModal.classList.remove('active');
+      document.body.style.overflow = '';
+      paywallBarrier.classList.remove('visible');
+      resetDemo();
+    }
+
+    function startAd() {
+      adSimulation.classList.add('active');
+      adTimeLeft = 15;
+      adTimer.textContent = adTimeLeft;
+      skipBtn.classList.remove('active');
+      skipBtn.textContent = `Skip Ad in ${adTimeLeft}s`;
+      
+      adInterval = setInterval(() => {
+        adTimeLeft--;
+        adTimer.textContent = adTimeLeft;
+        
+        if (adTimeLeft > 0) {
+          skipBtn.textContent = `Skip Ad in ${adTimeLeft}s`;
+        } else {
+          clearInterval(adInterval);
+          skipBtn.classList.add('active');
+          skipBtn.innerHTML = `Skip Ad <i class="fa-solid fa-forward"></i>`;
+        }
+      }, 1000);
+    }
+
+    function completeAd() {
+      clearInterval(adInterval);
+      adSimulation.classList.remove('active');
+      unlockSuccess.classList.add('active');
+      
+      // Generate fake JWT token
+      const fakeToken = generateFakeToken();
+      tokenDisplay.textContent = fakeToken;
+    }
+
+    function generateFakeToken() {
+      const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+      const payload = btoa(JSON.stringify({ 
+        contentId: 'article_' + Math.random().toString(36).substr(2, 9),
+        exp: Math.floor(Date.now() / 1000) + 86400,
+        iat: Math.floor(Date.now() / 1000)
+      }));
+      const signature = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      return `${header}.${payload}.${signature}`;
+    }
+
+    function continueReading() {
+      unlockSuccess.classList.remove('active');
+      paywallBarrier.classList.remove('visible');
+      fakeArticle.style.maxHeight = 'none';
+      articleContent.style.webkitMaskImage = 'none';
+      articleContent.style.maskImage = 'none';
+    }
+
+    function resetDemo() {
+      clearInterval(adInterval);
+      adSimulation.classList.remove('active');
+      unlockSuccess.classList.remove('active');
+      paywallBarrier.classList.remove('visible');
+      fakeArticle.style.maxHeight = '60vh';
+      articleContent.style.webkitMaskImage = '';
+      articleContent.style.maskImage = '';
     }
 
     // Event listeners for continuous scroll
@@ -884,6 +1501,8 @@
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         handleScroll(-100);
+      } else if (e.key === 'Escape') {
+        closeDemo();
       }
     });
 
